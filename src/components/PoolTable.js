@@ -59,6 +59,101 @@ function PoolTable() {
                 />
             </mesh>
 
+            {/*mesh for the side edges*/}
+            {[
+                [-12.5, 12, 0.7],
+                [12.5, 12, 0.7],
+                [-12.5, -12, 0.7],
+                [12.5, -12, 0.7]
+            ].map((pos, i) => {
+                const idx = i
+                return (
+                    <mesh
+                        key={idx}
+                        args={[edgeSideGeometry, edgeMaterial]}
+                        position={pos}
+                    />
+                )
+            })}
+
+            {/*mesh for the top edges*/}
+            {[
+                [0, 24.5, 0.7],
+                [0, -24.5, 0.7]
+            ].map((pos, i) => {
+                const idx = i
+                return (
+                    <mesh
+                        key={idx}
+                        args={[edgeTopGeometry, edgeMaterial]}
+                        position={pos}
+                    />
+                )
+            })}
+
+            {/*mesh for the cushion*/}
+            {[
+                [-12, 1, 0.2],
+                [12, 1, 1.2],
+                [-12, -23, 0.2],
+                [12, -23, 1.2]
+            ].map((pos, i) => {
+                const idx = i
+                return (
+                    <mesh
+                        key={idx}
+                        args={[cushionGeometry, clothMaterial]}
+                        position={pos}
+                        rotation={
+                            idx === 1 || idx === 3
+                            ? [0, (180 * Math.PI) / 180, 0]
+                            : [0, 0, 0]
+                        }
+                    />
+                )
+            })}
+
+
+            {/*mesh for the top cushion*/}
+            {[
+                [-11, 24, 0.2],
+                [11, -24, 0.2]
+            ].map((pos, i) => {
+                const idx = i
+                return (
+                    <mesh
+                        key={idx}
+                        args={[cushionGeometry, clothMaterial]}
+                        position={pos}
+                        rotation={
+                            idx === 0
+                            ? [0, 0, (-90 * Math.PI) / 180]
+                            : [0, 0, (90 * Math.PI) / 180]
+                        }
+                    />
+                )
+            })}
+
+            {/*mesh for the pockets*/}
+            {[
+                [-12, 24, 0],
+                [12, 24, 0],
+                [-12.5, 0, 0],
+                [12.5, 0, 0],
+                [-12.5, -24, 0],
+                [12, -24, 0]
+            ].map((pos, i) => {
+                const idx = i
+                return (
+                    <mesh
+                        key={idx}
+                        args={[pocketGeometry, pocketMaterial]}
+                        position={pos}
+                        rotation={[1.5708, 0, 0]}
+                    />
+                )
+            })}
+
         </object3D>
     )
 }
